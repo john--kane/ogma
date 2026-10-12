@@ -7,12 +7,12 @@
 }
 :root {
 	color-scheme: dark;
-	--bg: #101412;
-	--surface: #191f1b;
-	--ink: #f0f3e9;
-	--muted: #abb7a8;
-	--line: #354039;
-	--accent: #d3f999;
+	--bg: #0f141c;
+	--surface: #192231;
+	--ink: #edf3fa;
+	--muted: #a8b9cc;
+	--line: #34445a;
+	--accent: #77cbdc;
 	--mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 	--ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -105,7 +105,8 @@ svg {
 	background: var(--accent);
 	color: var(--bg);
 }
-.skip-link:focus {
+.skip-link:focus,
+.skip-link:hover {
 	top: 12px;
 	color: var(--bg);
 }
@@ -124,6 +125,10 @@ svg {
 	font-weight: 600;
 	letter-spacing: -0.035em;
 	line-height: 1;
+}
+.brand-logo {
+	flex-shrink: 0;
+	object-fit: contain;
 }
 .brand-dot {
 	color: var(--accent);
@@ -160,18 +165,11 @@ h1 span {
 	color: var(--accent);
 }
 .hero-mark {
-	position: absolute;
-	right: 0;
-	top: -2px;
-	width: 230px;
-	height: 230px;
-	color: var(--line);
-	stroke-width: 0.75;
-	transform: rotate(-18deg);
-}
-.hero-mark .core {
-	fill: var(--accent);
-	stroke: none;
+	width: clamp(180px, 19vw, 240px);
+	height: auto;
+	flex-shrink: 0;
+	object-fit: contain;
+	margin-left: 24px;
 }
 .hero-bottom {
 	display: flex;
@@ -209,7 +207,7 @@ h1 span {
 }
 .button:hover {
 	color: var(--bg);
-	background: #e3ffbb;
+	background: #a1e2ee;
 	transform: translateY(-2px);
 }
 .hero-actions > span {
@@ -219,7 +217,7 @@ h1 span {
 .terminal {
 	border: 1px solid var(--line);
 	border-radius: 10px;
-	background: #141a16;
+	background: #131c28;
 	overflow: hidden;
 	animation: terminal-in 0.8s var(--ease) both;
 }
@@ -266,7 +264,7 @@ h1 span {
 	border-right: 1px solid var(--line);
 }
 .code-dim {
-	color: #93a18f;
+	color: #97a9be;
 }
 .code-keyword {
 	color: #c9b8f5;
@@ -455,7 +453,7 @@ h2 {
 	color: var(--accent);
 	margin-top: 25px;
 	text-decoration: underline;
-	text-decoration-color: #667d52;
+	text-decoration-color: #508696;
 }
 .text-link:hover {
 	text-decoration-color: var(--accent);
@@ -559,7 +557,7 @@ td span {
 	color: var(--bg);
 }
 .start-section p {
-	color: #3c4d32;
+	color: #1d4655;
 }
 .start-section a:hover {
 	color: var(--bg);
@@ -571,11 +569,11 @@ td span {
 }
 .start-section .text-link {
 	color: var(--bg);
-	text-decoration-color: #748966;
+	text-decoration-color: #427484;
 }
 .build-instructions {
 	min-width: 0;
-	border: 1px solid #789363;
+	border: 1px solid #447b8a;
 	border-radius: 8px;
 	padding: 25px;
 }
@@ -589,11 +587,11 @@ td span {
 }
 .build-instructions .copy-button {
 	color: var(--bg);
-	border-color: #789363;
+	border-color: #447b8a;
 	margin-top: 0;
 }
 .build-instructions .copy-button:hover {
-	background: #b8e57c;
+	background: #9bdce9;
 }
 .build-instructions pre {
 	padding-block: 22px;
@@ -604,7 +602,7 @@ td span {
 .build-instructions p {
 	font-size: 12px;
 	line-height: 1.7;
-	border-top: 1px solid #92b077;
+	border-top: 1px solid #528c9b;
 	padding-top: 17px;
 }
 .platform-list {
@@ -690,16 +688,9 @@ td span {
 .copy-status:not(:empty) {
 	padding: 12px 20px;
 }
-@media (min-width: 1500px) {
-	.hero-mark {
-		right: 8px;
-	}
-}
 @media (max-width: 1100px) {
 	.hero-mark {
-		opacity: 0.35;
-		width: 175px;
-		height: 175px;
+		width: 160px;
 	}
 	.tools-layout,
 	.start-layout {

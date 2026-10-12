@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#101412">
+  <meta name="theme-color" content="#0f141c">
   <meta name="description" content="Ogma is a JS/TS runtime preview with a C# NativeAOT frontend, an isolated Rust worker, and JavaScriptCore. Native TypeScript, explicit permissions, and measured startup.">
   <meta property="og:title" content="Ogma — Your TypeScript. Straight to runtime.">
   <meta property="og:description" content="Native TypeScript. Explicit permissions. An isolated JavaScriptCore engine. Explore the Ogma runtime preview.">
   <meta property="og:type" content="website">
   <title>Ogma — Your TypeScript. Straight to runtime.</title>
-  <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/ogma-logo.png" type="image/png">
   <link rel="preload" href="assets/space-grotesk.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
@@ -17,7 +17,7 @@
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header wrap">
-    <a class="brand" href="#" aria-label="Ogma home"><img src="assets/mark.svg" width="31" height="31" alt="">ogma<span class="brand-dot">.</span></a>
+    <a class="brand" href="#" aria-label="Ogma home"><img class="brand-logo" src="assets/ogma-logo.png" width="42" height="42" alt="">ogma<span class="brand-dot">.</span></a>
     <nav aria-label="Main navigation">
       <a href="#runtime">Runtime</a><a href="#tools">Tools</a><a href="#benchmarks">Benchmarks</a>
     </nav>
@@ -28,7 +28,7 @@
     <section class="hero wrap" aria-labelledby="hero-title">
       <div class="hero-heading">
         <h1 id="hero-title">Your TypeScript.<br><span>Straight to runtime.</span></h1>
-        <svg class="hero-mark" viewBox="0 0 240 240" aria-hidden="true"><circle cx="120" cy="120" r="88"/><path d="M120 32v56m0 64v56M32 120h56m64 0h56"/><circle class="core" cx="120" cy="120" r="15"/></svg>
+        <img class="hero-mark" src="assets/ogma-logo.png" width="240" height="240" alt="" aria-hidden="true">
       </div>
       <div class="hero-bottom">
         <p>A JS/TS runtime with JavaScriptCore at its heart.<br class="desktop-break"> Run TypeScript directly, grant only what you need,<br class="desktop-break"> and keep execution in an isolated Rust worker.</p>
@@ -102,7 +102,7 @@ python3 tools/build.py --core-only
     </section>
   </main>
 
-  <footer class="wrap site-footer"><a class="brand" href="#" aria-label="Ogma home"><img src="assets/mark.svg" width="25" height="25" alt="">ogma<span class="brand-dot">.</span></a><p>Less ceremony. Clearer boundaries.</p><div><a href="https://github.com/john--kane/ogma">Source</a><a href="https://github.com/john--kane/ogma/blob/HEAD/README.md">Documentation</a><a href="data/startup.json">Benchmark data</a></div></footer>
+  <footer class="wrap site-footer"><a class="brand" href="#" aria-label="Ogma home"><img class="brand-logo" src="assets/ogma-logo.png" width="34" height="34" alt="">ogma<span class="brand-dot">.</span></a><p>Less ceremony. Clearer boundaries.</p><div><a href="https://github.com/john--kane/ogma">Source</a><a href="https://github.com/john--kane/ogma/blob/HEAD/README.md">Documentation</a><a href="data/startup.json">Benchmark data</a></div></footer>
   <p id="copy-status" class="copy-status" role="status" aria-live="polite"></p>
 </body>
 </html>
