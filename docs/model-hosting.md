@@ -30,7 +30,7 @@ support comes from the pinned engine, without a conversion step in Ogma.
 Run a model with:
 
 ```sh
-artifacts/ogma model run /absolute/path/model.gguf --allow-model --port=8080
+ogma model run /absolute/path/model.gguf --allow-model --port=8080
 ```
 
 The public service binds only `127.0.0.1`; its OpenAI-compatible
@@ -77,12 +77,12 @@ end-user model.
 
 ```sh
 # Connect to the running local service:
-artifacts/ogma model chat --allow-model --port=8080
-artifacts/ogma model ask 'Explain this error' --allow-model --caveman
+ogma model chat --allow-model --port=8080
+ogma model ask 'Explain this error' --allow-model --caveman
 # Load a transient model, answer once, then reap the server:
-artifacts/ogma model ask 'Explain this error' --model=/absolute/path/model.gguf --allow-model
+ogma model ask 'Explain this error' --model=/absolute/path/model.gguf --allow-model
 # Load a model for this interactive session:
-artifacts/ogma model chat /absolute/path/model.gguf --allow-model --caveman-ultra
+ogma model chat /absolute/path/model.gguf --allow-model --caveman-ultra
 ```
 
 `--ctx` is context per parallel slot (default 4096); `--parallel` defaults to 1.

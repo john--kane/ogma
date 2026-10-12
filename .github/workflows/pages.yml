@@ -4,12 +4,14 @@ on:
   push:
     paths:
       - 'site/**'
+      - 'install.sh'
       - 'tools/build_site.py'
       - 'docs/benchmarks/linux-core-preview.json'
       - '.github/workflows/pages.yml'
   pull_request:
     paths:
       - 'site/**'
+      - 'install.sh'
       - 'tools/build_site.py'
       - 'docs/benchmarks/linux-core-preview.json'
       - '.github/workflows/pages.yml'

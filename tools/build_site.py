@@ -46,8 +46,8 @@ def build(output):
         raise ValueError('site output must not overwrite its source')
     output.mkdir(parents=True, exist_ok=True)
     shutil.copytree(ROOT / 'site/assets', output / 'assets', dirs_exist_ok=True)
-    for name in ('style.css', 'script.js'):
-        shutil.copy2(ROOT / 'site' / name, output / name)
+    for name in ('style.css', 'script.js', 'install.sh'):
+        shutil.copy2(ROOT / name if name == 'install.sh' else ROOT / 'site' / name, output / name)
     (output / 'index.html').write_text(rendered, encoding='utf-8')
     (output / 'data').mkdir(exist_ok=True)
     shutil.copy2(REPORT, output / 'data/startup.json')

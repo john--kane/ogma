@@ -27,9 +27,9 @@ Ogma also includes a test runner, formatter, linter, bundler, type checker,
 and a package installer for a subset of pure-ESM npm packages.
 
 ```sh
-./artifacts/ogma run main.ts --allow-read=.
-./artifacts/ogma model chat /absolute/path/model.gguf --allow-model
-./artifacts/ogma mcp init ./my-tools
+ogma run main.ts --allow-read=.
+ogma model chat /absolute/path/model.gguf --allow-model
+ogma mcp init ./my-tools
 ```
 
 A C# NativeAOT CLI manages commands and diagnostics. An isolated Rust worker
@@ -51,7 +51,7 @@ the JavaScriptCore binding. Full Node.js compatibility is outside the current pr
 Start a local model service:
 
 ```sh
-./artifacts/ogma model run /absolute/path/model.gguf --allow-model --port=8080
+ogma model run /absolute/path/model.gguf --allow-model --port=8080
 ```
 
 Then call it from `ask.ts`:
@@ -65,7 +65,7 @@ console.log(answer);
 ```
 
 ```sh
-./artifacts/ogma run ask.ts --allow-read=. --allow-model --port=8080
+ogma run ask.ts --allow-read=. --allow-model --port=8080
 ```
 
 See [local model hosting](docs/model-hosting.md) for model setup and
@@ -73,7 +73,13 @@ See [local model hosting](docs/model-hosting.md) for model setup and
 
 ## Build and run
 
-Build from source with:
+Install the latest preview with:
+
+```sh
+curl -fsSL https://john--kane.github.io/ogma/install.sh | bash
+```
+
+Or build from source with:
 
 - .NET SDK **10.0.112**
 - Rust with edition 2024 support
@@ -87,7 +93,7 @@ Build from source with:
 git clone https://github.com/john--kane/ogma.git
 cd ogma
 python3 tools/build.py
-./artifacts/ogma run tests/fixtures/hello.ts --allow-read=tests/fixtures
+./ogma run tests/fixtures/hello.ts --allow-read=tests/fixtures
 ```
 
 The first build downloads pinned engine sources and tool packages, and can
@@ -100,8 +106,8 @@ File, environment, and network access are denied by default. Grant only what
 your script needs, including read access to its entry module:
 
 ```sh
-./artifacts/ogma run main.ts --allow-read=. --allow-net=example.com:443
-./artifacts/ogma run main.ts --allow-read=. --allow-write=./output -- --name demo
+ogma run main.ts --allow-read=. --allow-net=example.com:443
+ogma run main.ts --allow-read=. --allow-write=./output -- --name demo
 ```
 
 Write grant directories must already exist. Use `ogma <command> --help` for
@@ -111,14 +117,14 @@ permissions, resource limits, and build details.
 ## Built-in tools
 
 ```sh
-./artifacts/ogma test tests/fixtures/hello.ts --allow-read=tests/fixtures
-./artifacts/ogma fmt src                 # check formatting
-./artifacts/ogma fmt src --write         # apply formatting
-./artifacts/ogma lint src
-./artifacts/ogma bundle main.ts --output=dist/main.js
-./artifacts/ogma check .
-./artifacts/ogma install .
-./artifacts/ogma install . --locked      # use the verified offline store
+ogma test tests/fixtures/hello.ts --allow-read=tests/fixtures
+ogma fmt src                 # check formatting
+ogma fmt src --write         # apply formatting
+ogma lint src
+ogma bundle main.ts --output=dist/main.js
+ogma check .
+ogma install .
+ogma install . --locked      # use the verified offline store
 ```
 
 Formatting and linting use Biome; bundling uses Rolldown; type checking uses

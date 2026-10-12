@@ -1,4 +1,4 @@
-name: Package preview (no publishing)
+name: Package and publish preview
 on:
   push:
     tags: ['v*']
@@ -9,7 +9,7 @@ on:
         type: boolean
         default: false
 permissions:
-  contents: read
+  contents: write
 jobs:
   package:
     strategy:
@@ -89,3 +89,24 @@ jobs:
         with:
           name: ogma-${{ matrix.os }}-${{ steps.package.outputs.signature }}
           path: dist/
+
+  publish:
+    if: startsWith(github.ref, 'refs/tags/')
+    needs: package
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          pattern: ogma-*
+          merge-multiple: true
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            artifacts/*.tar.gz
+            artifacts/*.manifest.json
+            artifacts/*.sig
+            artifacts/release-public.pem
+          prerelease: true
+          generate_release_notes: true

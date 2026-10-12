@@ -45,7 +45,7 @@ For a client supporting `mcpServers`, use absolute paths:
 {
   "mcpServers": {
     "ogma-example": {
-      "command": "/absolute/path/to/artifacts/ogma",
+      "command": "ogma",
       "args": [
         "mcp", "serve", "/absolute/path/to/my-server/server.ts",
         "--allow-read=/absolute/path/to/my-server"
