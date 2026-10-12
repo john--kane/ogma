@@ -1,0 +1,284 @@
+{
+  "protocolVersion": 4,
+  "abiVersion": 1,
+  "maxFrameBytes": 8388608,
+  "statuses": {
+    "ok": 0,
+    "invalidArgument": 1,
+    "protocol": 2,
+    "permissionDenied": 3,
+    "execution": 4,
+    "io": 5,
+    "panic": 6,
+    "bufferTooSmall": 7,
+    "invalidHandle": 8,
+    "timeout": 9,
+    "cancelled": 10,
+    "workerCrash": 11,
+    "unsupported": 12,
+    "resourceLimit": 13
+  },
+  "types": {
+    "Permissions": {
+      "read": "string[]",
+      "write": "string[]",
+      "env": "string[]",
+      "net": "string[]",
+      "subprocess": "string[]",
+      "native": "string[]",
+      "model": "bool"
+    },
+    "Limits": {
+      "timeoutMs": "uint",
+      "maxMemoryMb": "uint",
+      "maxOutputBytes": "uint"
+    },
+    "Request": {
+      "protocolVersion": "uint",
+      "id": "string",
+      "command": "string",
+      "entry": "string",
+      "source": "string",
+      "args": "string[]",
+      "permissions": "Permissions",
+      "limits": "Limits",
+      "cacheDirectory": "string",
+      "trace": "bool",
+      "tool": "ToolOptions",
+      "sandbox": "string",
+      "model": "ModelOptions",
+      "mcp": "McpInvocation"
+    },
+    "Diagnostic": {
+      "code": "string",
+      "message": "string",
+      "specifier": "string",
+      "line": "uint",
+      "column": "uint"
+    },
+    "OutputEvent": {
+      "stream": "string",
+      "text": "string"
+    },
+    "TraceEvent": {
+      "name": "string",
+      "elapsedMicros": "ulong",
+      "count": "ulong"
+    },
+    "Response": {
+      "protocolVersion": "uint",
+      "id": "string",
+      "status": "string",
+      "diagnostics": "Diagnostic[]",
+      "output": "OutputEvent[]",
+      "trace": "TraceEvent[]",
+      "result": "json"
+    },
+    "ToolOptions": {
+      "write": "bool",
+      "locked": "bool",
+      "output": "string",
+      "registry": "string",
+      "store": "string"
+    },
+    "ModelOptions": {
+      "model": "string",
+      "server": "string",
+      "store": "string",
+      "context": "string",
+      "ctx": "uint",
+      "gpuLayers": "int",
+      "parallel": "uint",
+      "port": "uint",
+      "caveman": "string"
+    },
+    "McpTool": {
+      "name": "string",
+      "description": "string",
+      "inputSchema": "json"
+    },
+    "McpInvocation": {
+      "name": "string",
+      "arguments": "json"
+    }
+  },
+  "apis": [
+    {
+      "name": "readTextFile",
+      "op": "op_ogma_read_text_file",
+      "params": [
+        [
+          "path",
+          "string"
+        ]
+      ],
+      "result": "Promise<string>",
+      "async": true
+    },
+    {
+      "name": "writeTextFile",
+      "op": "op_ogma_write_text_file",
+      "params": [
+        [
+          "path",
+          "string"
+        ],
+        [
+          "text",
+          "string"
+        ]
+      ],
+      "result": "Promise<void>",
+      "async": true
+    },
+    {
+      "name": "sleep",
+      "op": "op_ogma_sleep",
+      "params": [
+        [
+          "milliseconds",
+          "number"
+        ]
+      ],
+      "result": "Promise<void>",
+      "async": true
+    },
+    {
+      "name": "env",
+      "op": "op_ogma_env",
+      "params": [
+        [
+          "name",
+          "string"
+        ]
+      ],
+      "result": "string | undefined",
+      "async": false
+    },
+    {
+      "name": "fetchText",
+      "op": "op_ogma_fetch_text",
+      "params": [
+        [
+          "url",
+          "string"
+        ]
+      ],
+      "result": "Promise<string>",
+      "async": true
+    },
+    {
+      "name": "modelAsk",
+      "op": "op_ogma_model_ask",
+      "params": [
+        [
+          "prompt",
+          "string"
+        ],
+        [
+          "context",
+          "string"
+        ]
+      ],
+      "optional": [
+        "context"
+      ],
+      "result": "Promise<string>",
+      "async": true
+    },
+    {
+      "name": "modelEmbed",
+      "op": "op_ogma_model_embed",
+      "params": [
+        [
+          "text",
+          "string"
+        ]
+      ],
+      "result": "Promise<number[]>",
+      "decode": "json",
+      "async": true
+    }
+  ],
+  "abi": [
+    {
+      "name": "ogma_abi_version",
+      "return": "uint",
+      "params": []
+    },
+    {
+      "name": "ogma_create",
+      "return": "status",
+      "params": [
+        [
+          "version",
+          "uint"
+        ],
+        [
+          "handle",
+          "handleOut"
+        ]
+      ]
+    },
+    {
+      "name": "ogma_execute",
+      "return": "status",
+      "params": [
+        [
+          "handle",
+          "handle"
+        ],
+        [
+          "request",
+          "bytes"
+        ],
+        [
+          "length",
+          "size"
+        ]
+      ]
+    },
+    {
+      "name": "ogma_response",
+      "return": "status",
+      "params": [
+        [
+          "handle",
+          "handle"
+        ],
+        [
+          "buffer",
+          "bytes"
+        ],
+        [
+          "capacity",
+          "size"
+        ],
+        [
+          "written",
+          "sizeOut"
+        ]
+      ]
+    },
+    {
+      "name": "ogma_destroy",
+      "return": "status",
+      "params": [
+        [
+          "handle",
+          "handle"
+        ]
+      ]
+    }
+  ],
+  "mcp": {
+    "registration": "mcpTool",
+    "maxTools": 128,
+    "protocolVersions": [
+      "2025-11-25",
+      "2025-06-18",
+      "2025-03-26",
+      "2024-11-05"
+    ]
+  }
+}

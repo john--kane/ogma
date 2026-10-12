@@ -1,0 +1,60 @@
+name: Ogma preview
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  runtime:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-14, macos-15-intel]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.112'
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '26.8.2'
+      - if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y bubblewrap clang zlib1g-dev
+      - if: runner.os == 'macOS'
+        run: |
+          brew install openssl@3
+          echo "$(brew --prefix openssl@3)/bin" >> "$GITHUB_PATH"
+      - run: python3 tools/build.py --core-only
+      - run: python3 tools/generate_contracts.py --check
+      - run: |
+          RUST_JSC_CUSTOM_BUILD_PATH="$(python3 tools/prepare_jsc.py | tail -1)" cargo test --locked -p ogma-runtime -- --skip model:: --skip model_store:: --skip model_context::
+      - run: python3 tools/test_core.py
+      - name: Require combined Linux namespace/seccomp execution
+        if: runner.os == 'Linux'
+        env:
+          OGMA_REQUIRE_SANDBOX: '1'
+        run: python3 -m unittest discover -s tests -p test_sandbox.py -v
+      - run: python3 tools/benchmark.py --samples=20 --output=artifacts/startup.json
+      - run: python3 tools/release.py --input artifacts --output dist --name ogma-${{ matrix.os }}-preview
+      - run: python3 tools/verify_preview.py dist/ogma-${{ matrix.os }}-preview.manifest.json --allow-unsigned --output=dist/installed-core-preview.json
+      - run: cp artifacts/startup.json dist/startup.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ogma-${{ matrix.os }}-unsigned
+          path: dist/
+  windows-contracts:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.112'
+      - run: python tools/generate_contracts.py --check
+      - run: dotnet publish src/Ogma.Cli -c Release -o artifacts
+      - run: artifacts/ogma.exe capabilities --json

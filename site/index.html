@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101412">
+  <meta name="description" content="Ogma is a JS/TS runtime preview with a C# NativeAOT frontend, an isolated Rust worker, and JavaScriptCore. Native TypeScript, explicit permissions, and measured startup.">
+  <meta property="og:title" content="Ogma — Your TypeScript. Straight to runtime.">
+  <meta property="og:description" content="Native TypeScript. Explicit permissions. An isolated JavaScriptCore engine. Explore the Ogma runtime preview.">
+  <meta property="og:type" content="website">
+  <title>Ogma — Your TypeScript. Straight to runtime.</title>
+  <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/space-grotesk.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header wrap">
+    <a class="brand" href="#" aria-label="Ogma home"><img src="assets/mark.svg" width="31" height="31" alt="">ogma<span class="brand-dot">.</span></a>
+    <nav aria-label="Main navigation">
+      <a href="#runtime">Runtime</a><a href="#tools">Tools</a><a href="#benchmarks">Benchmarks</a>
+    </nav>
+    <a class="source-link" href="https://github.com/john--kane/ogma">GitHub <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6 18 18 6M6 6h12v12"/></svg></a>
+  </header>
+
+  <main id="main">
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div class="hero-heading">
+        <h1 id="hero-title">Your TypeScript.<br><span>Straight to runtime.</span></h1>
+        <svg class="hero-mark" viewBox="0 0 240 240" aria-hidden="true"><circle cx="120" cy="120" r="88"/><path d="M120 32v56m0 64v56M32 120h56m64 0h56"/><circle class="core" cx="120" cy="120" r="15"/></svg>
+      </div>
+      <div class="hero-bottom">
+        <p>A JS/TS runtime with JavaScriptCore at its heart.<br class="desktop-break"> Run TypeScript directly, grant only what you need,<br class="desktop-break"> and keep execution in an isolated Rust worker.</p>
+        <div class="hero-actions"><a class="button" href="#start">Build the preview <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a><span>Linux verified. macOS CI pending.</span></div>
+      </div>
+
+      <div class="terminal" aria-label="TypeScript execution example">
+        <div class="terminal-bar"><span class="file-name"><span class="file-dot" aria-hidden="true"></span>main.ts</span><span>TypeScript → JavaScriptCore</span></div>
+        <div class="terminal-body">
+          <pre class="source-code"><code><span class="code-dim">// No explicit build step.</span>
+<span class="code-keyword">const</span> name: <span class="code-type">string</span> = <span class="code-string">"Ogma"</span>;
+<span class="code-keyword">await</span> Ogma.sleep(<span class="code-number">1</span>);
+console.log(<span class="code-string">`Hello from ${name}.`</span>);</code></pre>
+          <div class="terminal-output"><div class="command-line"><code><span aria-hidden="true" class="prompt">$ </span><span id="run-command">ogma run main.ts --allow-read=.</span></code><button class="copy-button" data-copy="run-command" aria-label="Copy run command" hidden><svg aria-hidden="true" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V4H4v12h4"/></svg></button></div><samp>Hello from Ogma.</samp><p>The entry file needs an explicit read grant.<br>No filesystem, environment, or network access by default.</p></div>
+        </div>
+      </div>
+      <div class="hero-caption"><span>0.1.0-preview.1</span><span>Native TypeScript · Local ESM · Top-level await</span><a href="#preview">Preview scope <span aria-hidden="true">↓</span></a></div>
+    </section>
+
+    <section id="runtime" class="runtime-section wrap section" aria-labelledby="runtime-title">
+      <div class="section-intro"><h2 id="runtime-title">Small frontend.<br>Serious boundaries.</h2><p>Every layer has a job. C# owns the interface. Rust owns execution and resources. JavaScriptCore runs your code.</p></div>
+      <div class="architecture" aria-label="C# NativeAOT frontend connects over framed JSON to an isolated Rust worker with JavaScriptCore">
+        <div class="architecture-node"><h3>C# NativeAOT</h3><p>CLI, diagnostics, REPL &amp; JSON-RPC</p></div>
+        <div class="connection"><span>framed JSON IPC</span><svg viewBox="0 0 120 20" aria-hidden="true"><path d="M0 10h117m-8-7 8 7-8 7"/></svg></div>
+        <div class="architecture-node worker-node"><h3>Rust <span>+ JavaScriptCore</span></h3><p>Modules, permissions, Tokio I/O &amp; caches</p></div>
+      </div>
+      <div class="principles">
+        <article><h3>Permission comes first.</h3><p>Filesystem, environment and network access start denied. Explicit grants define the boundary; Unix file access stays anchored to directory handles.</p><code>--allow-read=./src --allow-net=example.com:443</code></article>
+        <article><h3>A crash ends the attempt.</h3><p>The supervisor enforces cancellation and deadlines, monitors resident memory, and terminates the worker process tree. Completed side effects are never silently replayed.</p><code>--timeout-ms=30000 --memory-mb=256</code></article>
+        <article><h3>Contracts you can inspect.</h3><p>Versioned IPC and a trusted, opt-in C ABI. Shared contracts generate C#, Rust and TS bindings. Structured diagnostics and tracing make behavior visible.</p><code>ogma capabilities --json</code></article>
+      </div>
+    </section>
+
+    <section id="tools" class="tools-section section" aria-labelledby="tools-title">
+      <div class="wrap tools-layout">
+        <div><h2 id="tools-title">One CLI.<br>A shorter toolchain.</h2><p>Format, lint, test, bundle, check and install.<br>Pinned adapters behind predictable commands.</p><a class="text-link" href="https://github.com/john--kane/ogma/blob/HEAD/README.md#built-in-tools">Read the tooling contract <span aria-hidden="true">↗</span></a></div>
+        <dl class="tool-list">
+          <div><dt><code>ogma fmt</code><code>ogma lint</code></dt><dd>Biome <span>2.5.15</span></dd></div>
+          <div><dt><code>ogma test</code></dt><dd>Native test runner</dd></div>
+          <div><dt><code>ogma bundle</code></dt><dd>Rolldown <span>1.2.13</span></dd></div>
+          <div><dt><code>ogma check</code></dt><dd>TypeScript <span>6.0.3</span></dd></div>
+          <div><dt><code>ogma install --locked</code></dt><dd>Offline pure-ESM subset</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section id="benchmarks" class="benchmarks-section wrap section" aria-labelledby="benchmarks-title">
+      <div class="section-intro"><h2 id="benchmarks-title">Startup, with<br>the evidence.</h2><div><p>Fresh processes. A two-module TypeScript workload. Empty and populated transform/graph caches. Every run checks the result and cache state.</p><a class="text-link" href="data/startup.json">Inspect the raw benchmark <span aria-hidden="true">↗</span></a></div></div>
+      <div class="table-scroll"><table><caption>Linux x86_64 · @@SAMPLES@@ samples per mode · @@MEASURED_AT@@</caption><thead><tr><th scope="col">Launch to exit</th><th scope="col">Median</th><th scope="col">p95</th></tr></thead><tbody>
+        <tr><th scope="row">CLI capabilities<span>No worker</span></th><td>@@CLI_ONLY_MEDIAN@@ <span>ms</span></td><td>@@CLI_ONLY_P95@@ <span>ms</span></td></tr>
+        <tr><th scope="row">Parse + dry-run<span>No worker</span></th><td>@@CLI_PARSING_MEDIAN@@ <span>ms</span></td><td>@@CLI_PARSING_P95@@ <span>ms</span></td></tr>
+        <tr><th scope="row">Fresh JSC worker<span>Empty transform / graph caches</span></th><td>@@EMPTY_MEDIAN@@ <span>ms</span></td><td>@@EMPTY_P95@@ <span>ms</span></td></tr>
+        <tr><th scope="row">Fresh JSC worker<span>Populated transform / graph caches</span></th><td>@@POPULATED_MEDIAN@@ <span>ms</span></td><td>@@POPULATED_P95@@ <span>ms</span></td></tr>
+      </tbody></table></div>
+      <p class="measurement-note">One Linux host; OS page caches are uncontrolled. Worker measurements include tracing. No snapshot, engine bytecode cache or warm daemon. These results make no comparison with other runtimes.</p>
+    </section>
+
+    <section id="start" class="start-section section" aria-labelledby="start-title">
+      <div class="wrap start-layout"><div><h2 id="start-title">Take it for<br>a run.</h2><p>Build the core preview from source. Keep the complete <code>artifacts/</code> distribution together.</p><a class="text-link" href="https://github.com/john--kane/ogma/blob/HEAD/README.md#build-and-run">Full build prerequisites <span aria-hidden="true">↗</span></a></div>
+        <div class="build-instructions"><div class="build-command"><span>Clone &amp; build</span><button class="copy-button" data-copy="build-command" aria-label="Copy build commands" hidden><svg aria-hidden="true" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V4H4v12h4"/></svg></button></div><pre><code id="build-command">git clone https://github.com/john--kane/ogma.git
+cd ogma
+python3 tools/build.py --core-only
+./artifacts/ogma capabilities --json</code></pre><p>.NET SDK 10.0.112, Rust (edition 2024), Python 3.12+, Node 26.8.2, npm and platform build tools. The first build downloads pinned engine and tooling dependencies.</p></div>
+      </div>
+    </section>
+
+    <section id="preview" class="preview-section wrap section" aria-labelledby="preview-title">
+      <div class="section-intro"><h2 id="preview-title">A preview with<br>an explicit scope.</h2><p>Use the evidence to decide whether Ogma fits your project today.</p></div>
+      <dl class="platform-list"><div><dt>Linux <span>x86_64</span></dt><dd><span class="status-dot" aria-hidden="true"></span>Locally verified</dd></div><div><dt>macOS <span>Intel / Apple Silicon</span></dt><dd>CI configured · execution pending</dd></div><div><dt>Windows</dt><dd>JSC worker blocked · frontend/contracts only</dd></div></dl>
+      <div class="preview-notes"><p>The optional Linux sandbox is a namespace/seccomp prototype. Memory monitoring is sampled, not a hard cgroup cap. Full Node compatibility, native addons, complete OS sandboxing and a stable LSP are outside this MVP.</p><p>No official signed release is available from this workspace. Signing tests use disposable identities. <a href="https://github.com/john--kane/ogma/blob/HEAD/docs/mvp-verification.md">Read the verification record <span aria-hidden="true">↗</span></a></p></div>
+    </section>
+  </main>
+
+  <footer class="wrap site-footer"><a class="brand" href="#" aria-label="Ogma home"><img src="assets/mark.svg" width="25" height="25" alt="">ogma<span class="brand-dot">.</span></a><p>Less ceremony. Clearer boundaries.</p><div><a href="https://github.com/john--kane/ogma">Source</a><a href="https://github.com/john--kane/ogma/blob/HEAD/README.md">Documentation</a><a href="data/startup.json">Benchmark data</a></div></footer>
+  <p id="copy-status" class="copy-status" role="status" aria-live="polite"></p>
+</body>
+</html>

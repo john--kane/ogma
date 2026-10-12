@@ -1,0 +1,356 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ogma.dev/schemas/protocol-v3.json",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/Request"
+    },
+    {
+      "$ref": "#/$defs/Response"
+    }
+  ],
+  "$defs": {
+    "Permissions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "read",
+        "write",
+        "env",
+        "net",
+        "subprocess",
+        "native",
+        "model"
+      ],
+      "properties": {
+        "read": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "write": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "env": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "net": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "subprocess": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "native": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "model": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Limits": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "timeoutMs",
+        "maxMemoryMb",
+        "maxOutputBytes"
+      ],
+      "properties": {
+        "timeoutMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4294967295
+        },
+        "maxMemoryMb": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4294967295
+        },
+        "maxOutputBytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4294967295
+        }
+      }
+    },
+    "Request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "protocolVersion",
+        "id",
+        "command",
+        "entry",
+        "source",
+        "args",
+        "permissions",
+        "limits",
+        "cacheDirectory",
+        "trace",
+        "tool",
+        "sandbox",
+        "model"
+      ],
+      "properties": {
+        "protocolVersion": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4294967295,
+          "const": 3
+        },
+        "id": {
+          "type": "string"
+        },
+        "command": {
+          "type": "string"
+        },
+        "entry": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "args": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "permissions": {
+          "$ref": "#/$defs/Permissions"
+        },
+        "limits": {
+          "$ref": "#/$defs/Limits"
+        },
+        "cacheDirectory": {
+          "type": "string"
+        },
+        "trace": {
+          "type": "boolean"
+        },
+        "tool": {
+          "$ref": "#/$defs/ToolOptions"
+        },
+        "sandbox": {
+          "type": "string"
+        },
+        "model": {
+          "$ref": "#/$defs/ModelOptions"
+        }
+      }
+    },
+    "Diagnostic": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "code",
+        "message",
+        "specifier",
+        "line",
+        "column"
+      ],
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "specifier": {
+          "type": "string"
+        },
+        "line": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4294967295
+        },
+        "column": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4294967295
+        }
+      }
+    },
+    "OutputEvent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stream",
+        "text"
+      ],
+      "properties": {
+        "stream": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        }
+      }
+    },
+    "TraceEvent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "elapsedMicros",
+        "count"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "elapsedMicros": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 18446744073709551615
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 18446744073709551615
+        }
+      }
+    },
+    "Response": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "protocolVersion",
+        "id",
+        "status",
+        "diagnostics",
+        "output",
+        "trace"
+      ],
+      "properties": {
+        "protocolVersion": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4294967295,
+          "const": 3
+        },
+        "id": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "diagnostics": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Diagnostic"
+          }
+        },
+        "output": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/OutputEvent"
+          }
+        },
+        "trace": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/TraceEvent"
+          }
+        }
+      }
+    },
+    "ToolOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "write",
+        "locked",
+        "output",
+        "registry",
+        "store"
+      ],
+      "properties": {
+        "write": {
+          "type": "boolean"
+        },
+        "locked": {
+          "type": "boolean"
+        },
+        "output": {
+          "type": "string"
+        },
+        "registry": {
+          "type": "string"
+        },
+        "store": {
+          "type": "string"
+        }
+      }
+    },
+    "ModelOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "model",
+        "server",
+        "store",
+        "context",
+        "ctx",
+        "gpuLayers",
+        "parallel",
+        "port",
+        "caveman"
+      ],
+      "properties": {
+        "model": {
+          "type": "string"
+        },
+        "server": {
+          "type": "string"
+        },
+        "store": {
+          "type": "string"
+        },
+        "context": {
+          "type": "string"
+        },
+        "ctx": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4294967295
+        },
+        "gpuLayers": {
+          "type": "integer",
+          "minimum": -2147483648,
+          "maximum": 2147483647
+        },
+        "parallel": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4294967295
+        },
+        "port": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4294967295
+        },
+        "caveman": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

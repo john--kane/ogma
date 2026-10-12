@@ -1,0 +1,12 @@
+/target/
+/artifacts/
+/dist/
+/.build/
+**/bin/
+**/obj/
+**/__pycache__/
+*.tmp
+
+/tools/runtime/node_modules/
+.*/
+!.github/

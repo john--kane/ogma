@@ -1,0 +1,10 @@
+{
+  "binding": "rust_jsc=0.5.0",
+  "engine": "rust_jsc_sys=0.4.2",
+  "archives": {
+    "linux-x86_64": {"url": "https://github.com/kevincaicedo/rust-jsc/releases/download/sys-v0.4.2/libjsc-x86_64-unknown-linux-gnu.a.gz", "sha256": "15979801334a46a96ae4f7e07fc88db3575a6aff29d54496fd2c64483e90dcaa"},
+    "macos-aarch64": {"url": "https://github.com/kevincaicedo/rust-jsc/releases/download/sys-v0.4.2/libjsc-aarch64-apple-darwin.a.gz", "sha256": "a0470eb5424cc2030e319e7005f8b7c5ae8a2acc3b3b8a5b6aadd58a599a9bd5"},
+    "macos-x86_64": {"url": "https://github.com/kevincaicedo/rust-jsc/releases/download/sys-v0.4.2/libjsc-x86_64-apple-darwin.a.gz", "sha256": "b116994d6324ee63d3dcd8ffd4b01c7a2b92c22fec73ec41045c9f210fc7634f"}
+  },
+  "linuxPicIcu": {"url": "https://github.com/unicode-org/icu/releases/download/release-70-1/icu4c-70_1-src.tgz", "sha256": "8d205428c17bf13bb535300669ed28b338a157b1c01ae66d31d0d3e2d47c3fd5"}
+}

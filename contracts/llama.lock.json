@@ -1,0 +1,14 @@
+{
+  "repository": "https://github.com/ggml-org/llama.cpp",
+  "release": "v0.6.0",
+  "commit": "8345f333951c661d166b00e6f9362e553768f292",
+  "source": {
+    "url": "https://codeload.github.com/ggml-org/llama.cpp/tar.gz/8345f333951c661d166b00e6f9362e553768f292",
+    "sha256": "84050e783dbd0c4a4678f90f253b0881df04e90a98c20f73ae3709751c4a4850"
+  },
+  "testFixture": {
+    "url": "https://huggingface.co/ggml-org/models/resolve/main/tinyllamas/stories260K.gguf",
+    "sha256": "270cba1bd5109f42d03350f60406024560464db173c0e387d91f0426d3bd256d",
+    "purpose": "Small real CPU protocol fixture; not a model quality benchmark"
+  }
+}

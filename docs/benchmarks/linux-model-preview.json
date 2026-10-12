@@ -1,0 +1,471 @@
+{
+  "schema": 1,
+  "measuredAtUtc": "2026-10-11T11:17:42.190483+00:00",
+  "transport": "public ogma model run + loopback OpenAI HTTP",
+  "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.43",
+  "cpu": "",
+  "cpuFlags": [
+    "fpu",
+    "vme",
+    "de",
+    "pse",
+    "tsc",
+    "msr",
+    "pae",
+    "mce",
+    "cx8",
+    "apic",
+    "sep",
+    "mtrr",
+    "pge",
+    "mca",
+    "cmov",
+    "pat",
+    "pse36",
+    "clflush",
+    "dts",
+    "acpi",
+    "mmx",
+    "fxsr",
+    "sse",
+    "sse2",
+    "ss",
+    "ht",
+    "tm",
+    "pbe",
+    "syscall",
+    "nx",
+    "pdpe1gb",
+    "rdtscp",
+    "lm",
+    "constant_tsc",
+    "art",
+    "arch_perfmon",
+    "pebs",
+    "bts",
+    "rep_good",
+    "nopl",
+    "xtopology",
+    "nonstop_tsc",
+    "cpuid",
+    "aperfmperf",
+    "tsc_known_freq",
+    "pni",
+    "pclmulqdq",
+    "dtes64",
+    "monitor",
+    "ds_cpl",
+    "vmx",
+    "smx",
+    "est",
+    "tm2",
+    "ssse3",
+    "sdbg",
+    "fma",
+    "cx16",
+    "xtpr",
+    "pdcm",
+    "pcid",
+    "sse4_1",
+    "sse4_2",
+    "x2apic",
+    "movbe",
+    "popcnt",
+    "tsc_deadline_timer",
+    "aes",
+    "xsave",
+    "avx",
+    "f16c",
+    "rdrand",
+    "lahf_lm",
+    "abm",
+    "3dnowprefetch",
+    "cpuid_fault",
+    "epb",
+    "ssbd",
+    "ibrs",
+    "ibpb",
+    "stibp",
+    "ibrs_enhanced",
+    "tpr_shadow",
+    "flexpriority",
+    "ept",
+    "vpid",
+    "ept_ad",
+    "fsgsbase",
+    "tsc_adjust",
+    "bmi1",
+    "avx2",
+    "smep",
+    "bmi2",
+    "erms",
+    "invpcid",
+    "rdt_a",
+    "rdseed",
+    "adx",
+    "smap",
+    "clflushopt",
+    "clwb",
+    "intel_pt",
+    "sha_ni",
+    "xsaveopt",
+    "xsavec",
+    "xgetbv1",
+    "xsaves",
+    "split_lock_detect",
+    "user_shstk",
+    "avx_vnni",
+    "lam",
+    "wbnoinvd",
+    "dtherm",
+    "ida",
+    "arat",
+    "pln",
+    "pts",
+    "hwp",
+    "hwp_notify",
+    "hwp_act_window",
+    "hwp_epp",
+    "hwp_pkg_req",
+    "hfi",
+    "vnmi",
+    "umip",
+    "pku",
+    "ospke",
+    "waitpkg",
+    "gfni",
+    "vaes",
+    "vpclmulqdq",
+    "rdpid",
+    "bus_lock_detect",
+    "movdiri",
+    "movdir64b",
+    "fsrm",
+    "md_clear",
+    "serialize",
+    "arch_lbr",
+    "ibt",
+    "flush_l1d",
+    "arch_capabilities"
+  ],
+  "model": {
+    "path": "/mnt/jkdata/Code/ogma/.build/llama-test/stories260K.gguf",
+    "bytes": 1185376,
+    "sha256": "270cba1bd5109f42d03350f60406024560464db173c0e387d91f0426d3bd256d"
+  },
+  "cli": {
+    "path": "/mnt/jkdata/Code/ogma/artifacts/ogma",
+    "sha256": "41d69fd4e0395018d1347827da32ae86af791885cc4f4c2c4a1cf2cd9001665c"
+  },
+  "engine": {
+    "path": "/mnt/jkdata/Code/ogma/artifacts/model/llama-server",
+    "sha256": "48436d9feaf31617236f878591e6919a4f0c26dd58d32e5842f78d669f7d38b5",
+    "build": {
+      "fingerprint": "6c393941be81cffae5da95b3f425d5410aefc504ed7066c7a0a30d8b75c3a159",
+      "commit": "8345f333951c661d166b00e6f9362e553768f292",
+      "binarySha256": "48436d9feaf31617236f878591e6919a4f0c26dd58d32e5842f78d669f7d38b5",
+      "platform": "Linux",
+      "architecture": "x86_64",
+      "cmakeFlags": [
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DBUILD_SHARED_LIBS=OFF",
+        "-DGGML_NATIVE=OFF",
+        "-DGGML_CCACHE=OFF",
+        "-DLLAMA_BUILD_TESTS=OFF",
+        "-DLLAMA_BUILD_EXAMPLES=OFF",
+        "-DLLAMA_BUILD_TOOLS=ON",
+        "-DLLAMA_BUILD_SERVER=ON",
+        "-DLLAMA_BUILD_APP=OFF",
+        "-DLLAMA_BUILD_UI=OFF",
+        "-DLLAMA_USE_PREBUILT_UI=OFF",
+        "-DLLAMA_OPENSSL=OFF",
+        "-DLLAMA_BUILD_BORINGSSL=OFF",
+        "-DGGML_CUDA=OFF",
+        "-DGGML_VULKAN=OFF",
+        "-DGGML_METAL=OFF",
+        "-DGGML_METAL_EMBED_LIBRARY=ON"
+      ]
+    }
+  },
+  "backend": "CPU",
+  "configuration": {
+    "ctx": 512,
+    "gpuLayers": 0,
+    "parallel": 1,
+    "maxTokens": 16,
+    "prompt": "Once upon a time",
+    "memoryMb": 4096,
+    "cachePrompt": false,
+    "readinessPollMs": 50
+  },
+  "medians": {
+    "startupReadyMs": 51.257349994557444,
+    "requestWallMs": 8.770144006120972,
+    "completionTokensPerWallSecond": 1824.3714115564205,
+    "engine_prompt_ms": 1.722,
+    "engine_predicted_ms": 5.519,
+    "engine_prompt_per_second": 26713.124274099886,
+    "engine_predicted_per_second": 2717.883674578728
+  },
+  "samples": [
+    {
+      "run": 1,
+      "startupReadyMs": 36.04072299640393,
+      "health": {
+        "protocolVersion": 3,
+        "service": "ogma-model",
+        "status": "ok"
+      },
+      "requests": [
+        {
+          "request": 1,
+          "wallMs": 8.951014999183826,
+          "usage": {
+            "completion_tokens": 16,
+            "prompt_tokens": 46,
+            "total_tokens": 62,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 46,
+            "prompt_ms": 1.792,
+            "prompt_per_token_ms": 0.03895652173913044,
+            "prompt_per_second": 25669.642857142855,
+            "predicted_n": 16,
+            "predicted_ms": 5.107,
+            "predicted_per_token_ms": 0.3404666666666667,
+            "predicted_per_second": 2937.1450949676914
+          },
+          "completionTokensPerWallSecond": 1787.5067801203456,
+          "finishReason": "length"
+        },
+        {
+          "request": 2,
+          "wallMs": 9.15370599977905,
+          "usage": {
+            "completion_tokens": 16,
+            "prompt_tokens": 46,
+            "total_tokens": 62,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 46,
+            "prompt_ms": 1.738,
+            "prompt_per_token_ms": 0.03778260869565218,
+            "prompt_per_second": 26467.203682393556,
+            "predicted_n": 16,
+            "predicted_ms": 5.747,
+            "predicted_per_token_ms": 0.3831333333333333,
+            "predicted_per_second": 2610.0574212632678
+          },
+          "completionTokensPerWallSecond": 1747.9259220676527,
+          "finishReason": "length"
+        },
+        {
+          "request": 3,
+          "wallMs": 8.26538099499885,
+          "usage": {
+            "completion_tokens": 16,
+            "prompt_tokens": 46,
+            "total_tokens": 62,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 46,
+            "prompt_ms": 1.722,
+            "prompt_per_token_ms": 0.03743478260869565,
+            "prompt_per_second": 26713.124274099886,
+            "predicted_n": 16,
+            "predicted_ms": 5.171,
+            "predicted_per_token_ms": 0.34473333333333334,
+            "predicted_per_second": 2900.7928833881256
+          },
+          "completionTokensPerWallSecond": 1935.784933529519,
+          "finishReason": "length"
+        }
+      ]
+    },
+    {
+      "run": 2,
+      "startupReadyMs": 51.34521699801553,
+      "health": {
+        "protocolVersion": 3,
+        "service": "ogma-model",
+        "status": "ok"
+      },
+      "requests": [
+        {
+          "request": 1,
+          "wallMs": 9.377925998705905,
+          "usage": {
+            "completion_tokens": 16,
+            "prompt_tokens": 46,
+            "total_tokens": 62,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 46,
+            "prompt_ms": 1.989,
+            "prompt_per_token_ms": 0.04323913043478261,
+            "prompt_per_second": 23127.199597787832,
+            "predicted_n": 16,
+            "predicted_ms": 5.653,
+            "predicted_per_token_ms": 0.3768666666666666,
+            "predicted_per_second": 2653.4583407040514
+          },
+          "completionTokensPerWallSecond": 1706.1341710531624,
+          "finishReason": "length"
+        },
+        {
+          "request": 2,
+          "wallMs": 7.945297002152074,
+          "usage": {
+            "completion_tokens": 16,
+            "prompt_tokens": 46,
+            "total_tokens": 62,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 46,
+            "prompt_ms": 1.628,
+            "prompt_per_token_ms": 0.035391304347826086,
+            "prompt_per_second": 28255.528255528257,
+            "predicted_n": 16,
+            "predicted_ms": 4.97,
+            "predicted_per_token_ms": 0.3313333333333333,
+            "predicted_per_second": 3018.108651911469
+          },
+          "completionTokensPerWallSecond": 2013.769906356706,
+          "finishReason": "length"
+        },
+        {
+          "request": 3,
+          "wallMs": 8.230744999309536,
+          "usage": {
+            "completion_tokens": 16,
+            "prompt_tokens": 46,
+            "total_tokens": 62,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 46,
+            "prompt_ms": 1.553,
+            "prompt_per_token_ms": 0.03376086956521739,
+            "prompt_per_second": 29620.09014810045,
+            "predicted_n": 16,
+            "predicted_ms": 5.519,
+            "predicted_per_token_ms": 0.36793333333333333,
+            "predicted_per_second": 2717.883674578728
+          },
+          "completionTokensPerWallSecond": 1943.930956595328,
+          "finishReason": "length"
+        }
+      ]
+    },
+    {
+      "run": 3,
+      "startupReadyMs": 51.257349994557444,
+      "health": {
+        "protocolVersion": 3,
+        "service": "ogma-model",
+        "status": "ok"
+      },
+      "requests": [
+        {
+          "request": 1,
+          "wallMs": 9.138818997598719,
+          "usage": {
+            "completion_tokens": 16,
+            "prompt_tokens": 46,
+            "total_tokens": 62,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 46,
+            "prompt_ms": 2.33,
+            "prompt_per_token_ms": 0.05065217391304348,
+            "prompt_per_second": 19742.489270386264,
+            "predicted_n": 16,
+            "predicted_ms": 5.166,
+            "predicted_per_token_ms": 0.34440000000000004,
+            "predicted_per_second": 2903.600464576074
+          },
+          "completionTokensPerWallSecond": 1750.7732677717,
+          "finishReason": "length"
+        },
+        {
+          "request": 2,
+          "wallMs": 8.549507001589518,
+          "usage": {
+            "completion_tokens": 16,
+            "prompt_tokens": 46,
+            "total_tokens": 62,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 46,
+            "prompt_ms": 1.497,
+            "prompt_per_token_ms": 0.03254347826086957,
+            "prompt_per_second": 30728.12291249165,
+            "predicted_n": 16,
+            "predicted_ms": 5.735,
+            "predicted_per_token_ms": 0.38233333333333336,
+            "predicted_per_second": 2615.5187445510023
+          },
+          "completionTokensPerWallSecond": 1871.4529384004588,
+          "finishReason": "length"
+        },
+        {
+          "request": 3,
+          "wallMs": 8.770144006120972,
+          "usage": {
+            "completion_tokens": 16,
+            "prompt_tokens": 46,
+            "total_tokens": 62,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 46,
+            "prompt_ms": 1.543,
+            "prompt_per_token_ms": 0.033543478260869564,
+            "prompt_per_second": 29812.05443940376,
+            "predicted_n": 16,
+            "predicted_ms": 5.786,
+            "predicted_per_token_ms": 0.3857333333333333,
+            "predicted_per_second": 2592.4645696508815
+          },
+          "completionTokensPerWallSecond": 1824.3714115564205,
+          "finishReason": "length"
+        }
+      ]
+    }
+  ],
+  "limitations": "Fresh process startup with operating-system file cache unspecified; engine timings are optional. Tiny fixtures verify protocol and timing only, not model quality."
+}

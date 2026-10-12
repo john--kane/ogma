@@ -1,0 +1,14 @@
+{
+  "name": "ogma-private-tooling",
+  "version": "0.1.0-preview.1",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "26.8.2"
+  },
+  "dependencies": {
+    "@biomejs/biome": "2.5.15",
+    "rolldown": "1.2.13",
+    "typescript": "6.0.3"
+  }
+}
